@@ -6,10 +6,12 @@ import { AccountPage } from "./AccountPage";
 export const BlogPage = () => {
   return (
     <>
+      {/*Navigation hud component*/}
       <NavBar />
+      {/* Page routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/SingIn" element={<AccountPage />} />
+        <Route path="/logIn" element={<AccountPage />} />
       </Routes>
     </>
   );

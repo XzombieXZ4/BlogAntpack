@@ -1,18 +1,24 @@
-import { createContext } from "react";
+import { ChangeEvent, createContext, useEffect } from "react";
+import { useBlog } from "../hooks/useBlog";
 
 interface BlogContextProps {
-  any: () => void;
+  onLogIn: (val: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface BlogProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const BlogContext = createContext<BlogContextProps>({} as BlogContextProps);
+export const BlogContext = createContext<BlogContextProps>(
+  {} as BlogContextProps
+);
 
 export const BlogProvider = ({ children }: BlogProps) => {
-  const any = () => {};
+  const { onLogIn, getUsers } = useBlog();
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
-    <BlogContext.Provider value={{ any }}>{children}</BlogContext.Provider>
+    <BlogContext.Provider value={{ onLogIn }}>{children}</BlogContext.Provider>
   );
 };
