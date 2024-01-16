@@ -1,6 +1,6 @@
-import { useBlog } from "../hooks/useBlog";
+import { useAccount } from "../hooks/useAccount";
 
 export const NavBar = () => {
-  const { accountPage } = useBlog();
+  const { accountPage } = useAccount();
   return <button onClick={accountPage}>Sing in</button>;
 };
