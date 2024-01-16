@@ -1,11 +1,9 @@
-import { useBlog } from "../hooks/useBlog";
 import { BlogList } from "./BlogList";
-
-const { getBlog } = useBlog();
-getBlog();
+import { NavBar } from "./NavBar";
 export const Home = () => {
   return (
     <>
+      <NavBar />
       <BlogList />
     </>
   );

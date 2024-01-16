@@ -1,7 +1,6 @@
-import { ChangeEvent, useReducer, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Account, AccountResponse, Login } from "../interfaces";
-import { accountReducer } from "../helpers/accountReducer";
 
 export const useAccount = () => {
   const navigate = useNavigate();
@@ -65,7 +64,6 @@ export const useAccount = () => {
     );
     setUsersR([adminUser, ...users]);
   };
-  const [state, dispatch] = useReducer(accountReducer, usersR);
   const verifyLogin = () => {
     let userState: string = "";
     usersR.map((user) => {
@@ -89,5 +87,6 @@ export const useAccount = () => {
     onLogIn,
     getUsers,
     verifyLogin,
+    usersR,
   };
 };
