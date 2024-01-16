@@ -22,14 +22,14 @@ export const useAccount = () => {
 
   const getUsers = async () => {
     //Async Function to get users with a randomUserApi and a default admin user
-    const url = "https://randomuser.me/api/?results=10";
-    const resp = await fetch(url);
+    const url: string = "https://randomuser.me/api/?results=10";
+    const resp: Response = await fetch(url);
     const { results } = await resp.json();
     let i = 0;
     const adminUser: Account = {
       name: { first: "Admin", last: "User" },
       gender: "Unespecified",
-      login: { id: String(i), username: "Admin", password: "123" },
+      login: { userId: i, username: "Admin", password: "123" },
     };
     const users: Account[] = results.map(
       ({
