@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { BlogContext } from "../context/BlogContext";
 
-export const BlogList = () => {
+export const PostList = () => {
   const { posts } = useContext(BlogContext);
   return (
     <div>
