@@ -1,19 +1,33 @@
 import { useContext } from "react";
 import { BlogContext } from "../context/BlogContext";
+import { Post } from "./Post";
+import { PostUserInfo } from "../interfaces";
 
 export const PostList = () => {
-  const { posts } = useContext(BlogContext);
+  const { posts, postsInfo } = useContext(BlogContext);
   return (
-    <div>
+    <ol className="p-5 pt-2 mt-3 h-full flex gap-5 item-start justify-center flex-wrap overflow-hidden overflow-y-auto">
       {posts.map(({ id, userId, title, body }) => {
+        const postInfo: PostUserInfo | undefined = postsInfo.find((info) => {
+          if (info.id == userId) {
+            return info;
+          }
+        });
         return (
-          <>
-            <h1>{id}</h1>
-            <h1>{userId}</h1>
-            <h1>pakita</h1>
-          </>
+          <li
+            key={id}
+            className=" text-white relative flex flex-col p-2 w-10/12 rounded-lg bg-indigo-950 self-center"
+          >
+            <Post
+              userId={userId}
+              title={title}
+              body={body}
+              name={postInfo?.name}
+              picture={postInfo?.picture}
+            />
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
 };

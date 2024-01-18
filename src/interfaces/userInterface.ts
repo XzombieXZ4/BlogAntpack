@@ -7,7 +7,7 @@ export interface Login {
 }
 
 export interface LoginI extends Login {
-  userId: number;
+  id: number;
 }
 
 export interface Account {
@@ -19,5 +19,5 @@ export interface Account {
   phone?: string;
   location?: Location;
   nat?: string;
-  picture?: Picture;
+  picture: Picture;
 }

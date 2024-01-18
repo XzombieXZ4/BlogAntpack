@@ -7,24 +7,24 @@ export const AccountPage = () => {
   return (
     <div>
       <NavBar />
-      <div className="pt-24 text-2xl flex flex-col items-center">
+      <div className="animate__animated animate__backInDown overflow-hidden overflow-y-auto mt-24 text-2xl flex flex-col items-center">
         <form
           className="bg-blue-950 rounded-xl flex flex-col items-center py-8 px-4 "
           onSubmit={verifyLogin}
         >
           <label className="text-white py-4">
-            Username{" "}
+            Username
             <input
-              className="px-2 text-black"
+              className="mx-2 px-2 text-black w-3/5"
               type="text"
               onChange={onLogIn}
               name="username"
             />
           </label>
           <label className="rounded-sm text-white py-4">
-            Password{" "}
+            Password
             <input
-              className="rounded-sm px-2 text-black"
+              className="rounded-sm mx-2 px-4 text-black w-3/5"
               type="password"
               onChange={onLogIn}
               name="password"

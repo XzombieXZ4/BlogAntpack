@@ -1,21 +1,52 @@
-import { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent, useEffect, useReducer, useState } from "react";
 import { Account, AccountResponse, Login } from "../interfaces";
+import { useNavigate } from "react-router-dom";
+
+type AccountAction = //types to set the actions in account reducer
+
+    | { type: "initialAccount"; accounts: Account[] }
+    | { type: "addAccount"; account: Account }
+    | { type: "deleteAccount"; account: Account };
+
+const accountReducer = (state: Account[], action: AccountAction) => {
+  // account reducer function
+  switch (action.type) {
+    case "initialAccount":
+      return action.accounts;
+    case "addAccount":
+      return [...state, action.account];
+    default:
+      return state;
+  }
+};
+
+const initialUsers: Account[] = [];
+
+const init = () => {
+  if (localStorage.getItem("Accounts")) {
+    return JSON.parse(localStorage.getItem("Accounts") || "");
+  } else return [];
+};
 
 export const useAccount = () => {
-  const navigate = useNavigate();
   const [accountV, setAccountV] = useState<Login>({
+    //hook to save the form input
     username: "",
     password: "",
   });
-  const [usersR, setUsersR] = useState<Account[]>([]);
-  const accountPage = () => {
-    navigate("/logIn");
-  }; //function to redirect at log in account page
+
+  const [accounts, dispatchAccount] = useReducer(
+    accountReducer,
+    initialUsers,
+    init
+  ); // hook reducer to manage accounts state
+
+  const navigate = useNavigate(); //hook to change the window
+
   const onLogIn = ({
     target: { name, value },
   }: ChangeEvent<HTMLInputElement>) => {
-    // function to save the input in form page
+    // function to save the form input in login page
     setAccountV({ ...accountV, [name]: value });
   };
 
@@ -25,11 +56,6 @@ export const useAccount = () => {
     const resp: Response = await fetch(url);
     const { results } = await resp.json();
     let i = 0;
-    const adminUser: Account = {
-      name: { first: "Admin", last: "User" },
-      gender: "Unespecified",
-      login: { userId: i, username: "Admin", password: "123" },
-    };
     const users: Account[] = results.map(
       ({
         cell,
@@ -62,11 +88,35 @@ export const useAccount = () => {
         };
       }
     );
-    setUsersR([adminUser, ...users]);
+    return dispatchAccount({
+      type: "initialAccount",
+      accounts: [
+        {
+          name: { first: "Admin", last: "User" },
+          gender: "Unespecified",
+          login: { id: 0, username: "Admin", password: "123" },
+          picture: {
+            large: "https://static.thenounproject.com/png/3070444-200.png",
+            medium: "https://static.thenounproject.com/png/3070444-200.png",
+            thumbnail: "https://static.thenounproject.com/png/3070444-200.png",
+          },
+        },
+        ...users,
+      ],
+    });
   };
-  const verifyLogin = () => {
+  useEffect(() => {
+    if (!localStorage.getItem("Accounts")) getUsers();
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("Accounts", JSON.stringify(accounts));
+  }, [accounts]);
+
+  const verifyLogin = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    //function to verify if the ingresed account is in the database
+    event.preventDefault();
     let userState: string = "";
-    usersR.map((user) => {
+    accounts.map((user) => {
       const {
         login: { username, password },
       } = user;
@@ -82,11 +132,16 @@ export const useAccount = () => {
     if (userState === "finded") return;
     alert("Wrong Username");
   };
+
+  const accountPage = () => {
+    //function to redirect at log in account page
+    navigate("/logIn");
+  };
   return {
-    accountPage,
     onLogIn,
-    getUsers,
+    accountPage,
     verifyLogin,
-    usersR,
+    getUsers,
+    accounts,
   };
 };
