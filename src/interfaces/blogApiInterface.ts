@@ -7,14 +7,14 @@ export interface BlogResponse {
 
 //procesed posts response interface
 export interface PostUserInfo {
-  id: number;
+  userId: string;
   picture: string;
   name: string;
 }
 
 export interface BlogPosts {
-  userId: number;
-  id: number;
+  userId: string;
+  id: string;
   title: string;
   body: string;
 }

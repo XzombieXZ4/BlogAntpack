@@ -1,4 +1,4 @@
-import { BlogPage } from "./components/BlogPage";
+import { BlogPage } from "./components/Pages/BlogPage";
 import { BlogProvider } from "./context/BlogContext";
 
 export const App = () => {

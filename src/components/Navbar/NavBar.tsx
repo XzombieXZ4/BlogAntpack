@@ -7,10 +7,9 @@ export const NavBar = () => {
   switch (pathname) {
     case "/logIn":
       return (
-        <div className="absolute bg-indigo-950 grid w-screen h-26 shrink-0">
+        <div className="fixed bg-indigo-950 grid w-screen h-26 shrink-0 py-3">
           <Link
-            className={` place-self-center p-4 md:text-4xl lg:text-4xl  pl-2 text-slate-400 place-self-left hover:text-slate-300 cursor-pointer w-40
-      `}
+            className={` place-self-center pb-1 sm:ml-2 lg:ml-10 md:text-5xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer`}
             to="/"
           >
             PostPack
@@ -19,9 +18,9 @@ export const NavBar = () => {
       );
     case "/":
       return sessionStorage.getItem("currentAccount") ? (
-        <div className="fixed bg-indigo-950 flex justify-between w-screen h-26 shrink-0 ">
+        <div className="fixed bg-indigo-950 grid grid-cols-6 w-screen h-26 shrink-0 ">
           <Link
-            className={` place-self-center md:text-4xl lg:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer w-40
+            className={` place-self-center w-full  sm:ml-2 lg:ml-10 md:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer
           ${pathname === "/" ? "!text-white" : ""}
         `}
             to="/"
@@ -32,9 +31,9 @@ export const NavBar = () => {
           <AccountBar />
         </div>
       ) : (
-        <div className="fixed bg-indigo-950 flex justify-between w-screen h-26 shrink-0 ">
+        <div className="fixed bg-indigo-950 grid grid-cols-6 items- w-screen h-26 shrink-0 ">
           <Link
-            className={` place-self-center md:text-4xl lg:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer w-40
+            className={` place-self-center w-full  lg:ml-10 md:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer
           ${pathname === "/" ? "!text-white" : ""}
         `}
             to="/"
@@ -47,9 +46,9 @@ export const NavBar = () => {
       );
     default:
       return (
-        <div className="fixed bg-indigo-950 flex justify-between w-screen h-26 shrink-0 ">
+        <div className="fixed bg-indigo-950 grid grid-cols-6 items- w-screen h-26 shrink-0 ">
           <Link
-            className={` place-self-center md:text-4xl lg:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer w-40
+            className={` place-self-center w-full  lg:ml-10 md:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer
           ${pathname === "/" ? "!text-white" : ""}
         `}
             to="/"

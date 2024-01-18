@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import { BlogContext } from "../context/BlogContext";
-import { NavBar } from "./NavBar";
+import { BlogContext } from "../../context/BlogContext";
+import { NavBar } from "../Navbar/NavBar";
 
 export const AccountPage = () => {
   const { onLogIn, verifyLogin } = useContext(BlogContext);
   return (
-    <div>
+    <div className="h-full">
       <NavBar />
       <div className="animate__animated animate__backInDown overflow-hidden overflow-y-auto mt-24 text-2xl flex flex-col items-center">
         <form
-          className="bg-blue-950 rounded-xl flex flex-col items-center py-8 px-4 "
+          className="bg-blue-950 rounded-xl grid grid-rows-3 items-center py-8 px-4 self-center h-72"
           onSubmit={verifyLogin}
         >
           <label className="text-white py-4">

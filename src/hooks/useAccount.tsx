@@ -70,7 +70,7 @@ export const useAccount = () => {
       }: AccountResponse) => {
         i++;
         return {
-          login: { username, password, id: String(i) },
+          login: { username, password, userId: String(i) },
           name: { first, last, title },
           gender,
           cell,
@@ -90,19 +90,7 @@ export const useAccount = () => {
     );
     return dispatchAccount({
       type: "initialAccount",
-      accounts: [
-        {
-          name: { first: "Admin", last: "User" },
-          gender: "Unespecified",
-          login: { id: 0, username: "Admin", password: "123" },
-          picture: {
-            large: "https://static.thenounproject.com/png/3070444-200.png",
-            medium: "https://static.thenounproject.com/png/3070444-200.png",
-            thumbnail: "https://static.thenounproject.com/png/3070444-200.png",
-          },
-        },
-        ...users,
-      ],
+      accounts: [...users],
     });
   };
   useEffect(() => {
@@ -124,7 +112,8 @@ export const useAccount = () => {
         userState = "finded";
         if (password === accountV.password) {
           sessionStorage.setItem("currentAccount", JSON.stringify(user)); //i save the account session information in session storage because i don't have an external authentication system
-          return navigate("/");
+          navigate("/");
+          return window.location.reload();
         }
         return alert("Wrong password");
       }
@@ -137,6 +126,7 @@ export const useAccount = () => {
     //function to redirect at log in account page
     navigate("/logIn");
   };
+
   return {
     onLogIn,
     accountPage,

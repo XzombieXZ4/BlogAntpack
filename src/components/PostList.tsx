@@ -9,14 +9,14 @@ export const PostList = () => {
     <ol className="p-5 pt-2 mt-3 h-full flex gap-5 item-start justify-center flex-wrap overflow-hidden overflow-y-auto">
       {posts.map(({ id, userId, title, body }) => {
         const postInfo: PostUserInfo | undefined = postsInfo.find((info) => {
-          if (info.id == userId) {
+          if (info.userId == userId) {
             return info;
           }
         });
         return (
           <li
             key={id}
-            className=" text-white relative flex flex-col p-2 w-10/12 rounded-lg bg-indigo-950 self-center"
+            className=" text-white relative flex flex-col p-2 pb-12 w-10/12 rounded-lg bg-indigo-950 self-center"
           >
             <Post
               userId={userId}
@@ -24,6 +24,7 @@ export const PostList = () => {
               body={body}
               name={postInfo?.name}
               picture={postInfo?.picture}
+              id={id}
             />
           </li>
         );

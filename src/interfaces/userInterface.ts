@@ -7,7 +7,7 @@ export interface Login {
 }
 
 export interface LoginI extends Login {
-  id: number;
+  userId: string;
 }
 
 export interface Account {

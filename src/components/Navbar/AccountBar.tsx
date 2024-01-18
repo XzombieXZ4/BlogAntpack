@@ -1,15 +1,15 @@
 import { LogInButton } from "./LogInButton";
-import { MyPosts } from "./MyPosts";
+import { MyPostsButton } from "./MyPostsButton";
 import { UserButton } from "./UserButton";
 
 export const AccountBar = () => {
   return sessionStorage.getItem("currentAccount") ? (
-    <div className="mr-7 flex flex-row">
-      <MyPosts />
+    <div className="col-start-6 grid grid-cols-3">
+      <MyPostsButton />
       <UserButton />
     </div>
   ) : (
-    <div className="mr-7">
+    <div className="col-start-6 grid grid-cols-3">
       <LogInButton />
     </div>
   );
