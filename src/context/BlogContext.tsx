@@ -16,9 +16,18 @@ interface BlogContextProps {
   post: BlogPosts;
   addPost: (userId?: string) => void;
   resetPost: () => void;
-  getPostId: (id: string, userId: string) => void;
+  getPostI: (id: string, userId: string, title: string, bodu: string) => void;
   getTitle: (value: ChangeEvent<HTMLInputElement>) => void;
   getPost: (value: ChangeEvent<HTMLTextAreaElement>) => void;
+  search: string;
+  getSearch: (value: ChangeEvent<HTMLInputElement>) => void;
+  createAccountPage: () => void;
+  getLogin: (value: ChangeEvent<HTMLInputElement>) => void;
+  getName: (value: ChangeEvent<HTMLInputElement>) => void;
+  getAccountInfo: (value: ChangeEvent<HTMLInputElement>) => void;
+  registerAccount: (value: SyntheticEvent<HTMLFormElement>) => void;
+  account: Account;
+  getPassConfirm: (value: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface BlogProps {
@@ -30,17 +39,29 @@ export const BlogContext = createContext<BlogContextProps>(
 );
 
 export const BlogProvider = ({ children }: BlogProps) => {
-  const { onLogIn, verifyLogin } = useAccount();
+  const {
+    onLogIn,
+    verifyLogin,
+    createAccountPage,
+    getLogin,
+    getName,
+    getAccountInfo,
+    registerAccount,
+    account,
+    getPassConfirm,
+  } = useAccount();
   const {
     posts,
     postsInfo,
+    search,
+    getSearch,
     deletePost,
     changeVisible,
     state,
     post,
     resetPost,
     editPost,
-    getPostId,
+    getPostI,
     getTitle,
     getPost,
     addPost,
@@ -54,6 +75,8 @@ export const BlogProvider = ({ children }: BlogProps) => {
         posts,
         currentUser,
         postsInfo,
+        search,
+        getSearch,
         deletePost,
         changeVisible,
         state,
@@ -61,9 +84,16 @@ export const BlogProvider = ({ children }: BlogProps) => {
         post,
         addPost,
         resetPost,
-        getPostId,
+        getPostI,
         getTitle,
         getPost,
+        createAccountPage,
+        getLogin,
+        getName,
+        getAccountInfo,
+        registerAccount,
+        account,
+        getPassConfirm,
       }}
     >
       {children}

@@ -1,7 +1,4 @@
-import { PostList } from "../PostList";
-import { NavBar } from "../Navbar/NavBar";
-import { CreateBtn } from "../CreateBtn";
-import { CreatePost } from "../CreatePost";
+import { CreatePost, CreateBtn, NavBar, PostList } from "../";
 export const Home = () => {
   return (
     <>

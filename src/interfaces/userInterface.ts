@@ -19,5 +19,5 @@ export interface Account {
   phone?: string;
   location?: Location;
   nat?: string;
-  picture: Picture;
+  picture?: Picture;
 }

@@ -1,6 +1,4 @@
-import { LogInButton } from "./LogInButton";
-import { MyPostsButton } from "./MyPostsButton";
-import { UserButton } from "./UserButton";
+import { UserButton, LogInButton, MyPostsButton } from "../";
 
 export const AccountBar = () => {
   return sessionStorage.getItem("currentAccount") ? (

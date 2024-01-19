@@ -17,19 +17,19 @@ export const CreatePost = () => {
 
   return (
     <div
-      className={`fixed top-[7.5rem] left-4 mx-3.5 animate__animated animate__faster w-10/12  h-96 flex flex-col grow bg-indigo-800 rounded-lg md:left-12 lg:left-[4.6rem] xl:left-[5.6rem] 2xl:left-[9.2rem] ${
+      className={`fixed top-[7.5rem] animate__animated animate__faster w-10/12  h-96 flex flex-col grow bg-indigo-800 rounded-lg md:left-12 lg:left-[4.6rem] xl:left-[5.6rem] 2xl:left-[9.2rem] ${
         state ? "animate__zoomOut -z-50" : "animate__zoomIn"
       }`}
     >
       <input
         value={post.title}
-        className="w-10/12 h-8 mt-3 ml-5 pl-2 text-xl font-semibold rounded-lg bg-transparent"
+        className="self-center w-11/12 h-8 mt-3 text-xl font-semibold rounded-lg bg-transparent"
         placeholder="Write Title"
         onChange={getTitle}
       />
       <textarea
         value={post.body}
-        className="w-11/12 mt-4 ml-3 grow px-2 text-xl rounded-md bg-transparent"
+        className="w-11/12 mt-4 grow self-center text-xl rounded-md bg-transparent resize-none"
         placeholder="Write Post"
         onChange={getPost}
       />

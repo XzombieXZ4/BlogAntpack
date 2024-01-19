@@ -1,6 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import { PostSearch } from "./PostSearch";
-import { AccountBar } from "./AccountBar";
+import { AccountBar, PostSearch } from "../";
 
 export const NavBar = () => {
   const { pathname } = useLocation();
@@ -16,11 +15,23 @@ export const NavBar = () => {
           </Link>
         </div>
       );
+    case "/accountRegister":
+      return (
+        <div className="fixed bg-indigo-950 grid grid-cols-6 items- w-screen h-26 shrink-0 ">
+          <Link
+            className={` place-self-center w-full sm:ml-4 lg:ml-10 md:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer`}
+            to="/"
+          >
+            PostPack
+          </Link>
+          <AccountBar />
+        </div>
+      );
     case "/":
       return sessionStorage.getItem("currentAccount") ? (
         <div className="fixed bg-indigo-950 grid grid-cols-6 w-screen h-26 shrink-0 ">
           <Link
-            className={` place-self-center w-full  sm:ml-2 lg:ml-10 md:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer
+            className={` place-self-center w-full  sm:ml-4 lg:ml-10 md:text-4xl text-slate-400 place-self-left hover:text-slate-300 cursor-pointer
           ${pathname === "/" ? "!text-white" : ""}
         `}
             to="/"

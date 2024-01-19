@@ -1,3 +1,5 @@
+//hook of current user saved in session storage
+
 import { useEffect, useState } from "react";
 import { Account } from "../interfaces";
 

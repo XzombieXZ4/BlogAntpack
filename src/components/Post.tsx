@@ -11,30 +11,34 @@ interface props {
 }
 
 export const Post = ({ userId, title, body, name, picture, id }: props) => {
-  const { currentUser, deletePost, getPostId, changeVisible } =
+  const { currentUser, deletePost, getPostI, changeVisible } =
     useContext(BlogContext);
   const uid: string = currentUser?.login.userId || "";
   return (
     <div>
-      {picture && (
-        <div className="w-full grid grid-cols-2 p-1 py-2">
-          <div className="flex flex-row">
+      <div className="w-full grid grid-cols-2 p-1 py-2">
+        <div className="flex flex-row">
+          {picture ? (
             <img className="rounded-full md:w-7 lg:w-10" src={picture} />
-            <h1 className="pl-2 text-2xl self-center">{name}</h1>
-          </div>
-          <div className="place-self-end ">
-            {uid == userId && (
-              <button
-                className="self-end mb-2 w-10 h-8"
-                onClick={() => deletePost(id)}
-              >
-                <i className="material-symbols-rounded text-3xl">delete</i>
-              </button>
-            )}
-          </div>
+          ) : (
+            <span className="material-symbols-outlined md:text-5xl lg:text-5xl">
+              account_circle
+            </span>
+          )}
+          <h1 className="pl-2 text-2xl self-center">{name}</h1>
         </div>
-      )}
-      <h4 className="text-2xl font-semibold pl-2 py-2">{title}</h4>
+        <div className="place-self-end ">
+          {uid == userId && (
+            <button
+              className="self-end mb-2 w-10 h-8"
+              onClick={() => deletePost(id)}
+            >
+              <i className="material-symbols-rounded text-3xl">delete</i>
+            </button>
+          )}
+        </div>
+      </div>
+      <h4 className="text-2xl font-semibold pl-2 pb-2">{title}</h4>
       <p className="break-words pl-3 text-xl mt-1 max-h-32 overflow-scroll overflow-x-hidden overflow-y-hidden">
         {body}
       </p>
@@ -42,7 +46,7 @@ export const Post = ({ userId, title, body, name, picture, id }: props) => {
         <button
           className="absolute right-3 bottom-2.5 w-10 h-10"
           onClick={() => {
-            getPostId(id, uid), changeVisible();
+            getPostI(id, uid, title, body), changeVisible();
           }}
         >
           <i className="material-symbols-rounded text-4xl">edit</i>

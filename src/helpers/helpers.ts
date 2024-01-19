@@ -1,4 +1,5 @@
 export const idGen = () => {
+  //function to get a random id
   let result = "";
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
