@@ -40,7 +40,7 @@ export const blogReducer = (state: BlogPosts[], action: BlogAction) => {
       return [...newState];
     case "deletePost":
       const filterPost = state.filter((n) => {
-        if (n.userId != action.id) return n;
+        if (n.id != action.id) return n;
       });
       return [...filterPost];
     default:
